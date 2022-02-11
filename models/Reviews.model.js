@@ -3,13 +3,13 @@ const { model, Schema } = require("mongoose");
 const reviewSchema = new Schema({
   title: {
     type: String,
-    required: [true, "Title is required"],
+    // required: [true, "Title is required"],
   },
   rate: {
     type: Number,
     min: 1,
     max: 5,
-    required: [true, "Title is required"],
+    // required: [true, "Title is required"],
   },
   comment: {
     type: String,

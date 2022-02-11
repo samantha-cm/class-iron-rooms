@@ -6,4 +6,21 @@
   <h2>Price: {{price}}</h2>
   <h2>Location:{{location}}</h2>
   <img src={{image}} alt="foto" />
+
+  <form action="/rooms/edit/{{_id}}" method="get">
+    <button>Editar</button>
+  </form>
+  <form action="/rooms/delete/{{_id}}" method="post">
+    <button>Borrar</button>
+  </form>
+
+  <a href="/rooms/create-review/{{_id}}">Escribe una reseña</a>
+
+  {{#each reviews}}
+    <h3>{{ title }}</h3>
+    <p>{{rate}}</p>
+    <p>{{comment}}</p>
+    <p>{{user}}</p>
+  {{/each}}
 {{/with}}
+

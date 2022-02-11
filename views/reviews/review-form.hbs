@@ -1,0 +1,23 @@
+<h1>Formulario para reseñas</h1>
+<hr>
+
+<h1>{{id}}</h1>
+
+<form action="/rooms/create-review/{{id}}" method="POST">
+  <label>
+    Title
+    <input type="text" name="title" />
+  </label>
+  <br />
+  <label>
+    Comment
+    <textarea name="comment" type="text" cols="30" rows="10"></textarea>
+  </label>
+  <br />
+  <label>
+    Rate
+    <input type="number" name="rate" />
+  </label>
+
+  <button type="submit">Submit</button>
+</form>

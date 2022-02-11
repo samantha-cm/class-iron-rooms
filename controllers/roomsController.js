@@ -24,6 +24,7 @@ exports.postCreateRoom = async (req, res) => {
     console.log(error);
   }
 };
+
 exports.getRooms = async (req, res) => {
   const allRooms = await Room.find({});
   console.log(allRooms);
@@ -32,6 +33,29 @@ exports.getRooms = async (req, res) => {
 
 exports.getRoom = async (req, res) => {
   const { id } = req.params;
-  const currentRoom = await Room.findById(id);
+  const currentRoom = await Room.findById(id).populate('reviews');
+  console.log(currentRoom);
   res.render("rooms/detail", { currentRoom });
 };
+
+exports.getEditRoom = async (req, res) => {
+  const { id } = req.params;
+  const roomFound = await Room.findById(id)
+  res.render('rooms/edit-room', {roomFound});
+}
+
+exports.postEditRoom = async (req, res) => {
+  const { id } = req.params;
+  const { name, beds, guests, price, image, location, description } = req.body;
+  await Room.findByIdAndUpdate(
+    id,
+    { name, beds, guests, price, image, location, description }
+  );
+    return res.redirect(`/rooms/${id}`)
+}
+
+exports.postDeleteRoom = async (req, res) => {
+  const { id } = req.params;
+  await Room.findByIdAndDelete(id);
+  return res.redirect('/rooms');
+}
