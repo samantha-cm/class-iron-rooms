@@ -29,3 +29,9 @@ exports.getRooms = async (req, res) => {
   console.log(allRooms);
   res.render("rooms/list-rooms", { allRooms });
 };
+
+exports.getRoom = async (req, res) => {
+  const { id } = req.params;
+  const currentRoom = await Room.findById(id);
+  res.render("rooms/detail", { currentRoom });
+};

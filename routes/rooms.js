@@ -3,9 +3,8 @@ const roomsController = require("./../controllers/roomsController");
 
 //CRUD
 //GET - READ
-
 router.get("/", roomsController.getRooms);
-// router.get("/:id", roomsController.getRoom);
+router.get("/:id", roomsController.getRoom);
 
 //POST - CREATE
 //mostrar el formulario de crear

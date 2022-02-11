@@ -1,12 +1,9 @@
-<h1>Listado de Rooms</h1>
-<hr />
-{{#each allRooms}}
-  <a href="/rooms/{{_id}}">Name:{{name}}</a>
+<h1>Pagina de detalle</h1>
+{{#with currentRoom}}
+  <h1>{{name}}</h1>
   <h2>Description: {{description}}</h2>
   <h2>No.beds: {{beds}}</h2>
   <h2>Price: {{price}}</h2>
   <h2>Location:{{location}}</h2>
   <img src={{image}} alt="foto" />
-  <hr />
-
-{{/each}}
+{{/with}}
