@@ -17,10 +17,9 @@
   <a href="/rooms/create-review/{{_id}}">Escribe una reseña</a>
 
   {{#each reviews}}
-    <h3>{{ title }}</h3>
-    <p>{{rate}}</p>
-    <p>{{comment}}</p>
-    <p>{{user}}</p>
+    <h3>Titulo: {{title}}</h3>
+    <p>Rate:{{rate}}</p>
+    <p>Comments: {{comment}}</p>
+    <p>UserId: {{user}}</p>
   {{/each}}
 {{/with}}
-

@@ -1,6 +1,4 @@
 const Room = require("../models/Room.model");
-const Review = require("../models/Reviews.model");
-const { populate } = require("../models/Room.model");
 
 exports.getCreateRoom = (req, res) => {
   res.render("rooms/create-form");
