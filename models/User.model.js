@@ -23,6 +23,7 @@ const userSchema = new Schema(
       unique: true, // unique: true -> Ideally, should be unique, but its up to you
     },
     password: { type: String, required: [true, "password is required"] },
+    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

@@ -1,4 +1,6 @@
 const Room = require("../models/Room.model");
+const Review = require("../models/Reviews.model");
+const { populate } = require("../models/Room.model");
 
 exports.getCreateRoom = (req, res) => {
   res.render("rooms/create-form");
@@ -33,29 +35,42 @@ exports.getRooms = async (req, res) => {
 
 exports.getRoom = async (req, res) => {
   const { id } = req.params;
-  const currentRoom = await Room.findById(id).populate('reviews');
+  const currentRoom = await Room.findById(id)
+    .populate("reviews")
+    .populate({
+      path: "reviews",
+      populate: {
+        path: "user",
+        model: "User",
+      },
+    });
   console.log(currentRoom);
   res.render("rooms/detail", { currentRoom });
 };
 
 exports.getEditRoom = async (req, res) => {
   const { id } = req.params;
-  const roomFound = await Room.findById(id)
-  res.render('rooms/edit-room', {roomFound});
-}
+  const roomFound = await Room.findById(id);
+  res.render("rooms/edit-room", { roomFound });
+};
 
 exports.postEditRoom = async (req, res) => {
   const { id } = req.params;
   const { name, beds, guests, price, image, location, description } = req.body;
-  await Room.findByIdAndUpdate(
-    id,
-    { name, beds, guests, price, image, location, description }
-  );
-    return res.redirect(`/rooms/${id}`)
-}
+  await Room.findByIdAndUpdate(id, {
+    name,
+    beds,
+    guests,
+    price,
+    image,
+    location,
+    description,
+  });
+  return res.redirect(`/rooms/${id}`);
+};
 
 exports.postDeleteRoom = async (req, res) => {
   const { id } = req.params;
   await Room.findByIdAndDelete(id);
-  return res.redirect('/rooms');
-}
+  return res.redirect("/rooms");
+};
